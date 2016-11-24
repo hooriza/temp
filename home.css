@@ -29,7 +29,7 @@ button {
 
 button:active,
 button:focus {
-  background-color:#ccc;
+  background-color:#999;
   z-index: 9;
 }
 
