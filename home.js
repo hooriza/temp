@@ -16,9 +16,22 @@ $(document).on('keydown', 'button', (e) => {
   const $button = $(e.target);
   const rem = $button.data('rem') || [ 0, 0 ];
   
-  console.log(e.keyCode);
+  switch (e.keyCode) {
+    case 38: // up
+      rem[1] -= 1;
+      break;
+    case 40: // down
+      rem[1] += 1;
+      break;
+    case 37: // left
+      rem[0] -= 1;
+      break;
+    case 39: // right
+      rem[0] += 1;
+      break;
+  }
 
-  dragging.$button.css({
+  $button.css({
     left: rem[0] + 'rem',
     top: rem[1]+ 'rem'
   }).data('rem', rem);
