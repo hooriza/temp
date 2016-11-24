@@ -12,6 +12,20 @@ $(document).on('mousedown', 'button', (e) => {
   };
 });
 
+$(document).on('keydown', 'button', (e) => {
+  const $button = $(e.target);
+  const rem = $button.data('rem') || [ 0, 0 ];
+  
+  console.log(e.keyCode);
+
+  dragging.$button.css({
+    left: rem[0] + 'rem',
+    top: rem[1]+ 'rem'
+  }).data('rem', rem);
+  
+  save();  
+});
+
 $(document).on('mousemove', (e) => {
   if (!dragging) { return; }
   
