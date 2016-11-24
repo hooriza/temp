@@ -1,0 +1,37 @@
+html {
+  font-size: 7.5vw;
+}
+
+body {
+  background-image: url(http://i.imgur.com/fugfcX8.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+button {
+  position: absolute;
+  display: display;
+  width: .5rem;
+  height: .5rem;
+  left: 1rem;
+  top: 1rem;
+  background-color: #aaa;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: 1px solid rgba(0,0,0,.5);
+  text-align: center;
+  cursor: move;
+  overflow: hidden;
+  font-size: .1rem;
+  transition: transform .3s ease;
+}
+
+button:active {
+  background-color:#ccc;
+  z-index: 9;
+}
+
+button.rotate {
+  transform: rotate(90deg);
+}
