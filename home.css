@@ -27,7 +27,8 @@ button {
   transition: transform .3s ease;
 }
 
-button:active {
+button:active,
+button:focus {
   background-color:#ccc;
   z-index: 9;
 }
