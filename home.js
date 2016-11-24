@@ -1,4 +1,5 @@
 let dragging = null;
+const ratio = 0.075;
 
 $(document).on('mousedown', 'button', (e) => {
   const $button = $(e.target);
@@ -18,16 +19,16 @@ $(document).on('keydown', 'button', (e) => {
   
   switch (e.keyCode) {
     case 38: // up
-      rem[1] -= 1;
+      rem[1] -= ratio / 10;
       break;
     case 40: // down
-      rem[1] += 1;
+      rem[1] += ratio / 10;
       break;
     case 37: // left
-      rem[0] -= 1;
+      rem[0] -= ratio / 10;
       break;
     case 39: // right
-      rem[0] += 1;
+      rem[0] += ratio / 10;
       break;
   }
 
@@ -52,8 +53,8 @@ $(document).on('mouseup', (e) => {
   if (!dragging) { return; }
   
   const rem = [
-    (dragging.x + e.pageX - dragging.pageX) / window.innerWidth / 0.075,
-    (dragging.y + e.pageY - dragging.pageY) / window.innerWidth / 0.075
+    (dragging.x + e.pageX - dragging.pageX) / window.innerWidth / ratio,
+    (dragging.y + e.pageY - dragging.pageY) / window.innerWidth / ratio
   ];
   
   dragging.$button.css({
