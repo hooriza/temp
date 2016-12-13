@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    #pos {
+      position:absolute; right:0; top:0;
+    }
+
+    #ball {
+      position:absolute; left:0; top:0;
+      background: #f00;
+      width:10px; height:10px;
+    }  
+  </style>
+</head>
+<body>
+  <div id="pos"></div>
+  <div id="ball"></div>
+  <script>
+    // Special thanks to 재원님, 민중이 사촌동생, 해걸님 지인
+    console.clear();
+
+    const pos = document.getElementById('pos');
+    const ball = document.getElementById('ball');
+    const startTime = Date.now();
+
+    const 초기속도 = 500;
+    const 마찰력 = 200;
+
+    // 초기속도와 마찰력으로 계산한 값들
+    const 소요시간 = 초기속도 / 마찰력;
+    const 이동거리 = 초기속도 * 소요시간 - 마찰력 * Math.pow(소요시간, 2) / 2;
+
+    // 이동거리를 바꾸고 싶음
+    const 원하는이동거리 = Math.round(이동거리 / 100) * 100;
+
+    // 바꾼 이동거리로 재계산
+    const 필요한초기속도 = Math.sqrt(원하는이동거리 * 2 * 마찰력);
+    const 필요한소요시간 = 필요한초기속도 / 마찰력;
+
+    console.log('이동거리', 이동거리);
+    console.log('원하는이동거리', 원하는이동거리);
+
+    // 애니메이션 고!
+    function draw() {
+      const 걸린시간 = Math.min(필요한소요시간, (Date.now() - startTime) / 1000);
+      const 이동거리 = 필요한초기속도 * 걸린시간 - 마찰력 * Math.pow(걸린시간, 2) / 2;
+
+      ball.style.transform = `translateY(${이동거리.toFixed(4)}px)`;
+      pos.textContent = 이동거리.toFixed(1);
+
+      if (필요한소요시간 === 걸린시간) {
+        console.log('멈췄다');
+        return;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
